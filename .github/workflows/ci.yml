@@ -48,6 +48,7 @@ jobs:
           mkdir test-rtd
           virtualenv test-rtd
           . ./test-rtd/bin/activate
+          pipenv --python {{ matrix.python-version }}
           pip install -r requirements-dev.txt
           rm -rf test-rtd
 
