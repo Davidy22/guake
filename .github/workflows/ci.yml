@@ -75,8 +75,9 @@ jobs:
           path: dist
 
   release-test:
+    permissions:
+      id-token: write
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/master'
     needs:
       - build
     steps:
@@ -87,6 +88,7 @@ jobs:
       - name: Publish distribution 📦 to Test PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
-          verify_metadata: false
+          verify-metadata: false
+          verbose: true
           password: ${{ secrets.TEST_PYPI_API_TOKEN }}
-          repository_url: https://test.pypi.org/legacy/
+          repository-url: https://test.pypi.org/legacy/
